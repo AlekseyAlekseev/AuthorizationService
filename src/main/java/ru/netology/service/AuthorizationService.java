@@ -12,11 +12,15 @@ import java.util.List;
 public class AuthorizationService {
     UserRepository userRepository;
 
-    public String getAuthorities(String user, String password) {
+    public  AuthorizationService (UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public List<Authorities> getAuthorities(String user, String password) {
         if (isEmpty(user) || isEmpty(password)) {
             throw new InvalidCredentials("User name or password is empty");
         }
-        String userAuthorities = userRepository.getUserAuthorities(user, password);
+        List<Authorities> userAuthorities = userRepository.getUserAuthorities(user, password);
         if (isEmpty(userAuthorities)) {
             throw new UnauthorizedUser("Unknown user " + user);
         }

@@ -4,21 +4,19 @@ import org.springframework.stereotype.Repository;
 import ru.netology.model.Authorities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Repository
 public class UserRepository {
-    private static List<Authorities> userAuthorities = new ArrayList<>();
+    private List<Authorities> userAuthorities = new ArrayList<>();
+    {
+        userAuthorities.add(Authorities.READ);
+        userAuthorities.add(Authorities.WRITE);
+        userAuthorities.add(Authorities.DELETE);
+    }
 
-    private static HashMap<String, String> users = new HashMap<>();
-
-
-    public String getUserAuthorities(String name, String password) {
-//        users.put(name, password);
-//        userAuthorities.add(Authorities.WRITE);
-
-        return "hello my friend";
+    public List<Authorities> getUserAuthorities(String name, String password) {
+        return userAuthorities;
     }
 
 }
