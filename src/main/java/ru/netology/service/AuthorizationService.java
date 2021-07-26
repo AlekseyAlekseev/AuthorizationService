@@ -1,9 +1,6 @@
 package ru.netology.service;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import ru.netology.exception.InvalidCredentials;
-import ru.netology.exception.UnauthorizedUser;
 import ru.netology.model.Authorities;
 import ru.netology.repository.UserRepository;
 
@@ -23,7 +20,7 @@ public class AuthorizationService {
         }
         List<Authorities> userAuthorities = userRepository.getUserAuthorities(user, password);
         if (isEmpty(userAuthorities)) {
-            throw new RuntimeException("Unknown user " + user);
+            throw new RuntimeException("Unknown user: " + user);
         }
         return userAuthorities;
     }
