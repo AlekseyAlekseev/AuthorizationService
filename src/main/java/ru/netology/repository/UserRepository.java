@@ -3,19 +3,28 @@ package ru.netology.repository;
 import org.springframework.stereotype.Repository;
 import ru.netology.model.Authorities;
 
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
 public class UserRepository {
-    private List<Authorities> userAuthorities = new ArrayList<>();
+
+    private HashMap<String, String> users = new HashMap<>();
     {
-        userAuthorities.add(Authorities.READ);
-        userAuthorities.add(Authorities.WRITE);
-        userAuthorities.add(Authorities.DELETE);
+        users.put("admin", "123456");
+        users.put("user", "123");
     }
+    private List<Authorities> userAuthorities = new ArrayList<>();
 
     public List<Authorities> getUserAuthorities(String name, String password) {
+        userAuthorities.clear();
+        if (users.containsKey(name) && users.containsValue(password)) {
+            userAuthorities.add(Authorities.READ);
+        } else {
+            userAuthorities.clear();
+        }
         return userAuthorities;
     }
 
