@@ -20,7 +20,7 @@ public class UserRepository {
 
     public List<Authorities> getUserAuthorities(String name, String password) {
         userAuthorities.clear();
-        if (users.containsKey(name) && users.containsValue(password)) {
+        if (users.containsKey(name)) {
             userAuthorities.add(Authorities.READ);
         } else {
             userAuthorities.clear();
